@@ -1,0 +1,16 @@
+<h1>Read the transcripts of your favorite radio stations</h1>
+
+<h4>
+	You are listening to <b>{{stations.length}}</b> stations
+</h4>
+
+<h4>
+	<a href="#/addstation">Add a station</i></a>
+</h4>
+
+
+<li ng-repeat="station in stations">
+	<span><b>{{station.name}}</b></span>
+	<span>[{{station.url}}]</span>
+	<span><a href="#/read/{{station._id.$oid}}">Read Transcript</a></span>
+</li>

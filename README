@@ -1,0 +1,13 @@
+Radio News Reader
+=================================
+
+Connects to multiple mp3 radio streams using Akka actors, and displays text of audio transcripts using Google Speech Recognition API.
+
+Uses Play Framework 2.3
+
+This file will be packaged with your application, when using `activator dist`.
+
+Try adding the following stations as an example:
+
+BBC News [http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk]
+KQED [http://streams2.kqed.org:80/kqedradio]

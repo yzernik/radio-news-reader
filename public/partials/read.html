@@ -1,0 +1,9 @@
+<h2>{{station.name}}</h2>
+
+<h4>{{station.url}}</h4>
+
+<audio controls autoplay ng-src="{{streamUrl}}"></audio>
+
+<li ng-repeat="msg in msgs | orderBy:id:reverse">
+	<span><b><a href="#/chunk/{{msg._id.$oid}}">{{msg.time | date:'medium'}}</a></b>: {{msg.text}}</span>
+</li>

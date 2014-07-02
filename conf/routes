@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET		/							controllers.Application.index
+POST	/savestation				controllers.Application.saveStation
+GET		/station/:id				controllers.Application.station(id: String)
+GET 	/stations					controllers.Application.stations
+GET		/chunk/:id					controllers.Application.chunk(id: String)
+GET		/chunkstream/:id			controllers.Application.chunkStream(id: String)
+GET		/listentostation/:id		controllers.Application.listenToStation(id: String)
+GET		/chatfeed/:id				controllers.Application.chatFeed(id: String)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
