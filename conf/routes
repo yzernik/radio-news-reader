@@ -9,7 +9,6 @@ GET		/station/:id				controllers.Application.station(id: String)
 GET 	/stations					controllers.Application.stations
 GET		/chunk/:id					controllers.Application.chunk(id: String)
 GET		/chunkstream/:id			controllers.Application.chunkStream(id: String)
-GET		/listentostation/:id		controllers.Application.listenToStation(id: String)
 GET		/chatfeed/:id				controllers.Application.chatFeed(id: String)
 
 

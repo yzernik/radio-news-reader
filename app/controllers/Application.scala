@@ -34,9 +34,6 @@ object Application extends Controller with MongoController {
 
   implicit val context = play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-  /* Central hub for distributing chunks */
-  val (chunkOut, chunkChannel) = Concurrent.broadcast[AudioChunk]
-
   /* Central hub for distributing chunkinfos */
   val (chunkInfoOut, chunkInfoChannel) = Concurrent.broadcast[AudioChunkInfo]
 
@@ -117,25 +114,6 @@ object Application extends Controller with MongoController {
           .as("audio/mpeg")
       }.getOrElse {
         NotFound
-      }
-    }
-  }
-
-  /*
-   * REST endpoint returning the audio stream of a station by id.
-   */
-  def listenToStation(id: String) = Action.async {
-    def onlyThisStation(station: Station) = Enumeratee.filter[AudioChunk](chunk => chunk.stationId == station._id)
-    val futureMaybeStation = StationDAO.find(id)
-    futureMaybeStation.map { maybeStation =>
-      maybeStation match {
-        case Some(station) => {
-          val toBytes: Enumeratee[AudioChunk, Array[Byte]] = Enumeratee.map[AudioChunk] { chunkInfo => chunkInfo.audio.compact.toArray }
-          Ok.chunked(chunkOut
-            through onlyThisStation(station)
-            through toBytes).as("audio/mpeg")
-        }
-        case _ => BadRequest
       }
     }
   }
